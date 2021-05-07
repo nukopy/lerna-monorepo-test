@@ -4,6 +4,7 @@
   "scripts": {
     "_bootstrap": "lerna bootstrap --hoist",
     "bootstrap": "lerna bootstrap",
+    "publish": "lerna publish from-package",
     "----- for CI: linting & testing": "",
     "lint": "eslint --ext .ts .",
     "test": "jest",
