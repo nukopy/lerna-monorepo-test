@@ -2,7 +2,8 @@
   "name": "lerna-monorepo-test",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist",
+    "_bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap",
     "lint": "eslint --ext .ts .",
     "test": "jest"
   },
