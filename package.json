@@ -1,6 +1,6 @@
 {
   "name": "lerna-monorepo-test",
-  "private": true,
+  "private": false,
   "scripts": {
     "_bootstrap": "lerna bootstrap --hoist",
     "bootstrap": "lerna bootstrap",
