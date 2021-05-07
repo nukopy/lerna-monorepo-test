@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "@nukopy-dev/client",
   "version": "0.0.2",
   "description": "",
   "main": "index.js",
@@ -8,5 +8,5 @@
   },
   "author": "",
   "license": "MIT",
-  "gitHead": "224c5e458ee1d9167b60116e7f14ab25a4b788d6"
+  "gitHead": "00ba616fcc433e9aa70b635b92683a26d07dfce6"
 }
