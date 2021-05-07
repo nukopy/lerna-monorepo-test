@@ -4,8 +4,15 @@
   "scripts": {
     "_bootstrap": "lerna bootstrap --hoist",
     "bootstrap": "lerna bootstrap",
+    "----- for CI: linting & testing": "",
     "lint": "eslint --ext .ts .",
-    "test": "jest"
+    "test": "jest",
+    "----- create the version up commit -----": "",
+    "versionup": "lerna version --no-push --no-git-tag-version --conventional-commits",
+    "versionup:manual": "lerna version --no-push --no-git-tag-version",
+    "versionup:patch": "lerna version patch --no-push --no-git-tag-version --conventional-commits",
+    "versionup:minor": "lerna version minor --no-push --no-git-tag-version --conventional-commits",
+    "versionup:major": "lerna version major --no-push --no-git-tag-version --conventional-commits"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.1",
