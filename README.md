@@ -116,8 +116,148 @@ FAQ で気になったものをいくつか取り上げる。
 
 #### `--hoist` とは？
 
----
+- Lerna Hoisting
+  - https://github.com/lerna/lerna/blob/main/doc/hoist.md
+
+`lerna bootstrap --hoist` を実行すると、ルートディレクトリ、各パッケージ配下で共通する devDependencies をルートに引っ張ってくれる。これにより、インストール時間、ディスク容量の節約などにつながる。
+
+## Concepts
+
+Lerna に関する概念の整理。
+
+- [Lerna - Concepts](https://github.com/lerna/lerna#concepts)
+
+- Concepts
+  - `lerna.json`
+  - Common `devDependencies`
+  - [Git Hosted Dependencies](https://github.com/lerna/lerna#git-hosted-dependencies)
+  - [README Badge](https://github.com/lerna/lerna#readme-badge)
+    - 「このプロジェクトは Lerna で管理している」ということを表すためのバッジ。README の先頭に設置できる。
+  - [Wizard](https://github.com/lerna/lerna#wizard)
+    - Lerna の CLI の操作でのガイダンスをしてくれる wizard がある。
+    - リポジトリ：[webuniverseio/lerna-wizard](https://github.com/webuniverseio/lerna-wizard)
+
+解説が込み入るものだけ以下に整理していく。
+
+### `lerna.json`
+
+[README のこれ](https://github.com/lerna/lerna#lernajson)見れば OK。`lerna.json` の各設定についての説明が書いてある。
+
+### Common `devDependencies`：共通する devDependencies
+
+ほとんどの `devDependencies` は `lerna link convert` で Lerna リポジトリのルートに引き上げることができる。上記のコマンドを実行すると、自動的にファイルをホイストし、相対的な `file:` 指定を使用する。
+
+ホイストにはいくつかの利点がある：
+
+- 全てのパッケージが特定の依存関係の同じバージョンを使用できる
+- Snyk のような自動化されたツールを使い、ルートの依存関係を最新に保つことができる
+- 依存関係のインストール時間が短縮される
+- 必要なストレージが少なくて済む
+
+なお、npm scripts で使用される「バイナリ」実行ファイルを提供する `devDependencies` は、それが使用される各パッケージに直接インストールする必要がある。
+
+例えば、以下のような npm scripts でバイナリ実行ファイルを使用するケースでは、`lerna run nsp`（およびパッケージのディレクトリ内の `npm run nsp`）が正しく動作するためには、ルートの `devDependencies` ではなく、そのパッケージのディレクトリ内で `nsp` という依存関係をインストールする必要がある。
+
+```json
+{
+  "scripts": {
+    "nsp": "nsp"
+  },
+  "devDependencies": {
+    "nsp": "^2.3.3"
+  }
+}
+```
+
+### Git Hosted Dependencies
+
+Lerna では、Git Remote URL でローカルのパッケージ（`packages` 配下のパッケージ）を dependencies として `package.json` に追加できる。以下に例を示す。
+
+```json
+// packages/pkg-1/package.json
+{
+  name: "pkg-1",
+  version: "1.0.0",
+  dependencies: {
+    "pkg-2": "github:example-user/pkg-2#v1.0.0"
+  }
+}
+
+// packages/pkg-2/package.json
+{
+  name: "pkg-2",
+  version: "1.0.0"
+}
+```
+
+この書き方により、以下が実現できる。
+
+- `lerna bootstrap` 実行時に、ローカルのパッケージに symlink を貼ることができる
+- `lerna publish` 時に、依存するローカルのパッケージのバージョン（上記の `#v1.0.0`）が自動でアップデートされる
 
 ## 各コマンドの詳細
+
+手元で一度でも実行してみたらチェック付ける。
+
+- [x] `init`
+- [x] `bootstrap`
+- [x] `publish`
+- [ ] `updated`
+- [ ] `clean`
+- [ ] `diff`
+- [ ] `ls`
+- [ ] `run`
+- [ ] `exec`
+
+### init
+
+```sh
+lerna init
+lerna init --independent
+```
+
+### bootstrap
+
+```sh
+lerna bootstrap
+```
+
+`lerna bootstrap` を実行すると、以下の手順で処理が実行される。
+
+1. `packages` 配下の各パッケージのすべての外部依存関係を `npm install` する
+2. 互いの依存関係である全ての Lerna packages をシンボリックリンクする
+3. 全てのブートストラップされたパッケージを `npm prepublish` する
+
+### publish
+
+現在の Lerna プロジェクトにあるパッケージを公開する。
+
+```sh
+lerna publish
+```
+
+`lerna publish` を実行すると、以下の手順で処理が実行される。
+
+### updated
+
+pass
+
+### clean
+
+pass
+
+### diff
+
+pass
+
+### ls
+
+pass
+
+### run
+
+pass
+
+### exec
 
 pass
