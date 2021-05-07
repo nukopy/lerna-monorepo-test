@@ -1,5 +1,8 @@
 {
   "name": "@nukopy-dev/server",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.2",
   "description": "",
   "main": "index.js",
@@ -8,5 +11,5 @@
   },
   "author": "",
   "license": "MIT",
-  "gitHead": "fd054e223340c459c369faeff14f2e4a2995e22f"
+  "gitHead": "37e2395f4d3d9d6fdfb00e25f983cfe2e63b4f7e"
 }
