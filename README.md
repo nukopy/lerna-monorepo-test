@@ -1,5 +1,7 @@
 # Lerna Monorepo Test
 
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![Test](https://github.com/nukopy/lerna-monorepo-test/actions/workflows/test.yml/badge.svg)](https://github.com/nukopy/lerna-monorepo-test/actions/workflows/test.yml)
+
 - Lerna - A tool for managing JavaScript projects with multiple packages.
   - Official Page: https://lerna.js.org/
 
