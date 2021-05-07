@@ -10,6 +10,19 @@
 - Node.js v14.16.1
 - Lerna v4.0.0
 
+## How to Publish
+
+- Requirements
+  - Login npm in CLI: `npm login`
+  - `packages/` 配下の `package.json` のパッケージ名を `@organization/package-name` にする
+  - `package.json` に public access の設定を追加する
+
+```sh
+npm run publish
+```
+
+---
+
 ## Lerna の背景
 
 以下、[ドキュメントの About](https://lerna.js.org/#about) の日本語訳。
