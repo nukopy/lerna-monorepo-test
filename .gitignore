@@ -1,6 +1,9 @@
 # vscode
 .vscode/
 
+# npm
+.npmrc
+
 ####################
 # for Node.js
 ####################
