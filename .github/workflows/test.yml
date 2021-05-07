@@ -18,5 +18,5 @@ jobs:
         run: npm run bootstrap
       - name: linting
         run: npm run lint
-      - name: testing
-        run: npm run test
+      # - name: testing
+      #   run: npm run test
