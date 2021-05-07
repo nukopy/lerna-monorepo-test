@@ -18,6 +18,7 @@
   - `package.json` に public access の設定を追加する
 
 ```sh
+npm run versionup:minor
 npm run publish
 ```
 
